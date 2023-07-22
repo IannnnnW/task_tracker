@@ -55,5 +55,12 @@ transform: translateY(-5px); /* Adjust the elevation level as needed */
 .task-card{
     width: 600px;
 }
-  
-  
+.pendingAssignment{
+    width:600px;
+    padding:20px;
+}
+.active{
+z-index: 1;
+color: #495057;
+text-decoration: none;
+}

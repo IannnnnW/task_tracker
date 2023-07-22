@@ -25,6 +25,7 @@ return new class extends Migration
             $table->timestamp('date_assigned')->nullable();
             $table->timestamp('date_completed')->nullable();
             $table->timestamp('date_closed')->nullable();
+            $table->enum('priority', ['very high', 'high', 'medium','low'])->nullable();
             $table->timestamps();
 
             $table->foreign('supervised_by')->references('id')->on('users');

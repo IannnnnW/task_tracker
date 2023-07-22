@@ -96,6 +96,12 @@ class Task extends Model{
     public function setImage($image){
         $this->attributes['image'] = $image;
     }
+    public function getPriority(){
+        return ucfirst($this->attributes['priority']);
+    }
+    public function setPriority($priority){
+        $this->attributes['priority'] = $priority;
+    }
     public function getCreatedAt(){
         return $this->attributes['created_at'];
     }

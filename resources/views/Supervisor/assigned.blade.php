@@ -51,6 +51,10 @@
                                                 <input type="text" value="{{ $task->getAssignedTo()->name }}"class="form-control" id="assigneeName" readonly>
                                             </div>
                                             <div class="form-group m-3">
+                                                <label for="name" class="mb-2">Priority</label>
+                                                <input type="text" value="{{ $task->getPriority() }}"class="form-control" id="taskPriority" readonly>
+                                            </div>
+                                            <div class="form-group m-3">
                                                 <label for="date" class="mb-2">Date Assigned</label>
                                                 <input type="text" value="{{ $task->getDateAssigned() }}"class="form-control" id="dateAssigned">
                                             </div>

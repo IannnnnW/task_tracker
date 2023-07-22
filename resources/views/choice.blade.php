@@ -44,8 +44,8 @@
 <div class="justify-content-center mt-4 margin-auto">
     <div class="container d-flex justify-content-between">
         <div class="col-md-6 col-lg-4 mb-2 align-self-center d-flex flex-column align-items-center">
-            <img src="{{asset('/img/executor.png')}}" class="img-fluid rounded">
-            <a class="text-center btn">Execute</a>
+            <img src="{{ asset('/img/executor.png') }}" class="img-fluid rounded">
+            <a href="{{ route('Executor.inprogress') }}"class="text-center btn">Execute</a>
         </div>
         <div class="col-md-6 col-lg-4 mb-2 align-self-center d-flex flex-column align-items-center">
             <img src="{{asset('/img/requestor.png')}}" class="img-fluid rounded">

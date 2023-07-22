@@ -18,9 +18,14 @@ class SupervisorController extends Controller{
     }
     public function unassignedView(){
         $viewData = [];
-        $viewData['departmentMembers'] = User::where('department_id', Auth::user()->getDepartment()->getId())->get();
         $viewData['unassignedTasks'] = Task::where('department_assigned_to', Auth::user()->getDepartment()->getId())->where('progress', 'unassigned')->get();
         return view('Supervisor.unassigned')->with('viewData', $viewData);
+    }
+    public function unassignedTaskView($id){
+        $viewData = [];
+        $viewData['unassignedTask'] = Task::findOrFail($id);
+        $viewData['departmentMembers'] = User::where('department_id', Auth::user()->getDepartment()->getId())->get();
+        return view('Supervisor.unassignedTask')->with('viewData', $viewData);
     }
     public function assign(Request $request, $id){
        $assignedTask = Task::findOrFail($id);
@@ -28,6 +33,7 @@ class SupervisorController extends Controller{
        $assignedTask->setProgress('in progress');
        $assignedTask->setDateAssigned(date('Y-m-d H:i:s'));
        $assignedTask->setSupervisedBy(Auth::user()->getId());
+       $assignedTask->setPriority($request->input('priority'));
        $assignedTask->save();
        return redirect()->route('Supervisor.index');
     }
