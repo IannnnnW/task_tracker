@@ -12,8 +12,6 @@ class SupervisorController extends Controller{
         $viewData = [];
         $viewData['unassignedBtn'] = 'Unassgined';
         $viewData['assignedBtn'] = 'Assigned';
-        $viewData['unassignedNumber'] = Task::where('department_assigned_to', Auth::user()->getDepartment()->getId())->where('progress', 'unassigned')->count();
-        $viewData['assignedNumber'] = Task::where('department_assigned_to', Auth::user()->getDepartment()->getId())->where('progress', 'in progress')->count();
         return view('Supervisor.index')->with('viewData', $viewData);
     }
     public function unassignedView(){
@@ -35,7 +33,7 @@ class SupervisorController extends Controller{
        $assignedTask->setSupervisedBy(Auth::user()->getId());
        $assignedTask->setPriority($request->input('priority'));
        $assignedTask->save();
-       return redirect()->route('Supervisor.index');
+       return redirect()->route('Supervisor.unassigned');
     }
     public function assignedView(){
         $viewData = [];

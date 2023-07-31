@@ -34,5 +34,13 @@ Route::middleware('authentication')->group(function(){
     Route::get('/supervisor/assigned', 'App\Http\Controllers\SupervisorController@assignedView')->name('Supervisor.assigned');
     Route::get('/executor', 'App\Http\Controllers\ExecutorController@inprogress')->name('Executor.inprogress');
     Route::get('/executor/completed', 'App\Http\Controllers\ExecutorController@completed')->name('Executor.completed');
-    Route::get('/exector/selected/{id}', 'App\Http\Controllers\ExecutorController@execute')->name('Executor.selected');
+    Route::get('/executor/selected/{id}', 'App\Http\Controllers\ExecutorController@select')->name('Executor.selected');
+    Route::get('/executor/addcomment', 'App\Http\Controllers\ExecutorController@addcomment')->name('addcomment');
+    Route::post('/executor/savecomment', 'App\Http\Controllers\ExecutorController@savecomment')->name('savecomment');
+    Route::post('/executor/completed', 'App\Http\Controllers\ExecutorController@markAsComplete')->name('markascomplete');
+    Route::get('/requestor/completed', 'App\Http\Controllers\RequestController@completedRequests')->name('Requestor.completedrequests');
+    Route::post('/requestor/close', 'App\Http\Controllers\RequestController@markAsClosed')->name('markasclosed');
+    Route::get('/requestor/closedrequests', 'App\Http\Controllers\RequestController@closedRequests')->name('Requestor.closedrequests');
+    Route::get('/profile', 'App\Http\Controllers\UniversalController@profile')->name('profile');
+    Route::get('/requestor/showdetails', 'App\Http\Controllers\RequestController@showdetails')->name('showdetails');
 });

@@ -42,6 +42,14 @@ class Task extends Model{
     public function setMessage($message){
         $this->attributes['message'] = $message;
     }
+    public function getComments(){
+        return json_decode($this->attributes['subtasks'], true) ?? [];
+    }
+    public function setComment($comment, $entity){
+        $comments = $this->getComments();
+        $comments[$entity][] = $comment;
+        $this->attributes['subtasks'] = json_encode($comments);
+    }
     public function created_by(){
         return $this->belongsTo(User::class, 'created_by');
     }
@@ -77,12 +85,6 @@ class Task extends Model{
     }
     public function setDepartmentAssignedTo($department){
         $this->department_assigned_to = $department;
-    }
-    public function getSubTasks(){
-        return json_decode($this->attributes['sub-tasks'], true) ?? [];
-    }
-    public function setSubTasks($task){
-        $this->attributes['sub-tasks'] = json_encode($task);
     }
     public function getProgress(){
         return $this->attributes['progress'];

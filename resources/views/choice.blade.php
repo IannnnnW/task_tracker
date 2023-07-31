@@ -11,11 +11,11 @@
         </div>
         <div class="col-md-6 col-lg-4 mb-2 align-self-center d-flex flex-column align-items-center">
             <img src="{{asset('/img/executor.png')}}" class="img-fluid rounded">
-            <a class="mt-2 text-center text-white btn bg-secondary">Execute</a>
+            <a href="{{ route('Executor.inprogress') }}"class="text-center btn">Execute</a>
         </div>
         <div class="col-md-6 col-lg-4 mb-2 align-self-center d-flex flex-column align-items-center">
             <img src="{{asset('/img/requestor.png')}}" class="img-fluid rounded">
-            <a href="{{ route('Requestor.index') }}"class="mt-2 text-center text-white btn bg-secondary">Request</a>
+            <a href="{{ route('Requestor.addtask') }}"class="mt-2 text-center text-white btn bg-secondary">Request</a>
         </div>
     </div>
 </div>
@@ -26,15 +26,15 @@
     <div class="container d-flex">
         <div class="col-md-6 col-lg-4 mb-2 align-self-center d-flex flex-column align-items-center">
             <img src="{{asset('/img/supervisor.png')}}" class="">
-            <a class="text-center btn" href="{{ route('Supervisor.index') }}">Supervise</a>
+            <a class="text-center btn" href="{{ route('Supervisor.unassigned') }}">Supervise</a>
         </div>
         <div class="col-md-6 col-lg-4 mb-2 align-self-center d-flex flex-column align-items-center">
             <img src="{{asset('/img/executor.png')}}" class="img-fluid rounded">
-            <a class="text-center btn">Execute</a>
+            <a href="{{ route('Executor.inprogress') }}"class="text-center btn">Execute</a>
         </div>
         <div class="col-md-6 col-lg-4 mb-2 align-self-center d-flex flex-column align-items-center">
             <img src="{{asset('/img/requestor.png')}}" class="img-fluid rounded">
-            <a href="{{ route('Requestor.index') }}" class="text-center btn">Request</a>
+            <a href="{{ route('Requestor.addtask') }}" class="text-center btn">Request</a>
         </div>
     </div>
 </div>
@@ -49,7 +49,7 @@
         </div>
         <div class="col-md-6 col-lg-4 mb-2 align-self-center d-flex flex-column align-items-center">
             <img src="{{asset('/img/requestor.png')}}" class="img-fluid rounded">
-            <a href="{{ route('Requestor.index') }}" class="text-center btn">Request</a>
+            <a href="{{ route('Requestor.addtask') }}" class="text-center btn">Request</a>
         </div>
     </div>
 </div>

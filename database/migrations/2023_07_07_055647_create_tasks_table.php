@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('created_by');
             $table->unsignedBigInteger('assigned_to')->nullable();
             $table->unsignedBigInteger('department_assigned_to');
-            $table->json('sub-tasks');
+            $table->json('subtasks')->nullable();
             $table->enum('progress', ['unassigned', 'in progress', 'complete', 'closed'])->default('unassigned');
             $table->string('image')->nullable();
             $table->unsignedBigInteger('supervised_by')->nullable();

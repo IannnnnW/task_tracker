@@ -9,9 +9,15 @@
     <a href="{{ route('choice') }}" class="list-group-item list-group-item-action bg-light"><i class="bi bi-toggles"></i> Switch Role</a>
 @endsection 
 @section('content')
-<h3 class="text-center">DashBoard</h3>
-<div class="container-fluid justify-content-center d-flex pt-5">
-    <div class="m-3"></div>
-    
-</div>
+<h4 class="m-2">{{$viewData['title']}}</h4>
+    @if(count($viewData['closedRequests']))
+        @foreach($viewData['closedRequests'] as $request)
+            <a class="card p-2 mb-2" style="text-decoration:none;">
+                <p>Title - {{$request->getTitle()}}</p>
+                <p>Date Closed - {{$request->getDateClosed()}}</p>
+            </a>
+        @endforeach
+    @else
+        <h5 class="text-center"><i class="bi bi-file-text mr-2"></i> You haven't closed any requests yet!</h5>
+    @endif
 @endsection
