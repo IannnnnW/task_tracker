@@ -41,4 +41,12 @@ class SupervisorController extends Controller{
         $viewData['assignedTasks'] = Task::where('progress', 'in progress')->get();
         return view('Supervisor.assigned')->with('viewData', $viewData);
     }
+    public function completedTasks(){
+        $completedTasks = Task::where('progress', 'complete')->where('supervised_by', Auth::user()->getId())->get();
+        return view('Supervisor.completedtasks', compact('completedTasks'));
+    }
+    public function closedTasks(){
+        $closedTasks = Task::where('progress', 'closed')->where('supervised_by', Auth::user()->getId())->get();
+        return view('Supervisor.closed', compact('closedTasks'));
+    }
 }

@@ -70,14 +70,14 @@
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">Task Tracker</div>
-            <aside class="list-group list-group-flush">
+            <aside class="d-flex flex-column list-group list-group-flush">
                 @yield('aside')
             </aside>
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-2">
                 <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

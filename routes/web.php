@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::middleware('authentication')->group(function(){
     Route::get('/choice', 'App\Http\Controllers\ChoiceController@check')->name('choice');
-    Route::get('/request', 'App\Http\Controllers\RequestController@index')->name('Requestor.index');
+    Route::get('/request', 'App\Http\Controllers\RequestController@dashboard')->name('Requestor.dashboard');
     Route::get('/addtask', 'App\Http\Controllers\TaskRequestController@index')->name('Requestor.addtask');
     Route::post('/savetask', 'App\Http\Controllers\RequestController@save')->name('Requestor.save');
     Route::get('/supervisor', 'App\Http\Controllers\SupervisorController@index')->name('Supervisor.index');
@@ -43,4 +43,7 @@ Route::middleware('authentication')->group(function(){
     Route::get('/requestor/closedrequests', 'App\Http\Controllers\RequestController@closedRequests')->name('Requestor.closedrequests');
     Route::get('/profile', 'App\Http\Controllers\UniversalController@profile')->name('profile');
     Route::get('/requestor/showdetails', 'App\Http\Controllers\RequestController@showdetails')->name('showdetails');
+    Route::get('/supervisor/completedtasks', 'App\Http\Controllers\SupervisorController@completedTasks')->name('Supervisor.completedtasks');
+    Route::get('/supervisor/closedtasks', 'App\Http\Controllers\SupervisorController@closedTasks')->name('Supervisor.closed');
+    Route::get('/executor/dashboard', 'App\Http\Controllers\ExecutorController@dashboard')->name('Executor.dashboard');
 });

@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Department;
 use App\Models\Role;
+use App\Models\Task;
 
 class User extends Authenticatable
 {
@@ -96,7 +97,7 @@ class User extends Authenticatable
         $this->role = $role;
     }
     public function tasks(){
-        return $this->hasMany(Item::class);
+        return $this->hasMany(Task::class);
     }
     public function getTasks(){
         return $this->tasks;

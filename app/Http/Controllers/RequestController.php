@@ -5,18 +5,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Department;
 
 class RequestController extends Controller{
-    public function index(){
-        $viewData = [];
-        $viewData['addButton'] = 'Add New';
-        $viewData['completedButton'] = 'Completed';
-        $viewData['pendingButton'] = 'In Progress & Unassigned';
-
-        return view('Requestor.index')->with("viewData", $viewData);
+    public function dashboard(){
+        $completedRequests = count(Task::where('created_by', Auth::user()->getId())->where('progress', 'complete')->get());
+        $incompleteRequests = count(Task::where('progress', 'in progress')->where('created_by', Auth::user()->getId())->get());
+        $closedRequests = count(Task::where('progress', 'closed')->where('created_by', Auth::user()->getId())->get());
+        $tasks = Task::where('created_by', Auth::user()->getId())->get();
+        $completionRate = 0;
+        foreach($tasks as $task){
+            if(date('d/M/Y', strtotime($task->getCreatedAt())) === date('d/M/Y', strtotime($task->getDateCompleted()))){
+                $completionRate = $completionRate + 1;
+            }
+        }
+        return view('Requestor.dashboard', compact('completedRequests', 'incompleteRequests', 'closedRequests', 'completionRate'));
     }
     public function save(Request $request){
         // dd($request);

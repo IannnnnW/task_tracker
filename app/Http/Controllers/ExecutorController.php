@@ -9,6 +9,19 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Crypt;
 
 class ExecutorController extends Controller{
+    public function dashboard(){
+        $completedTasks = count(Task::where('assigned_to', Auth::user()->getId())->where('progress', 'complete')->get());
+        $incompleteTasks = count(Task::where('progress', 'inprogress')->where('assigned_to', Auth::user()->getId())->get());
+        $closedTasks = count(Task::where('progress', 'closed')->where('assigned_to', Auth::user()->getId())->get());
+        $tasks = Task::where('assigned_to', Auth::user()->getId())->get();
+        $completionRate = 0;
+        foreach($tasks as $task){
+            if(date('d/M/Y', strtotime($task->getDateAssigned())) === date('d/M/Y', strtotime($task->getDateCompleted()))){
+                $completionRate = $completionRate + 1;
+            }
+        }
+        return view('Executor.dashboard', compact('completedTasks', 'incompleteTasks', 'closedTasks', 'completionRate'));
+    }
     public function inprogress(){
         $viewData = [];
         $viewData['assignedTasks'] = Task::where('assigned_to', Auth::user()->getId())->where('progress', 'in progress')->get();

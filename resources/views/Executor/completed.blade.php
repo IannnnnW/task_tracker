@@ -1,8 +1,8 @@
 @extends('layouts.in-app')
 @section('aside')
-    <a href="#" class="list-group-item list-group-item-action bg-light"><i class="bi bi-clipboard"></i> Dashboard</a>
-    <a href="{{ route('Executor.completed') }}" class="list-group-item list-group-item-action bg-light"><i class="bi bi-list-check"></i> Completed</a>
-    <a href="{{ route('Executor.inprogress') }}" class="list-group-item list-group-item-action bg-light"><i class="bi bi-clock mr-2"></i> In Progress</a>
+    <a href="{{ route('Executor.dashboard')}}" class="list-group-item list-group-item-action bg-light"><i class="bi bi-clipboard"></i> Dashboard</a>
+    <a href="{{ route('Executor.completed') }}" class="list-group-item list-group-item-action bg-light"><i class="bi bi-list-check"></i> Completed & Closed</a>
+    <a href="{{ route('Executor.inprogress') }}" class="list-group-item list-group-item-action bg-light"><i class="bi bi-clock mr-2"></i> Assigned </a>
     <a href="{{ route('profile') }}" class="list-group-item list-group-item-action bg-light"><i class="bi bi-person-gear"></i> Profile</a>
     <a href="{{ route('choice') }}" class="list-group-item list-group-item-action bg-light"><i class="bi bi-toggles"></i> Switch Role</a>
 @endsection

@@ -4,14 +4,14 @@
     <input type="hidden" id="task_id" name="task_id" value="{{$task->getId()}}"/>
     <input type="hidden" name="executor" value="{{$task->getAssignedTo()->name}}"/>
     <div class="mb-2">
-        @if($differenceInMinutes)
+        @if($differenceInMinutes < 60)
             <p class="text-center">Completed In: {{'Just '.$differenceInMinutes.' Minutes'}}</p>
-        @elseif($differenceInHours && $differenceInMinutes)
-            <p class="text-center">Completed In: {{'Just '.$differenceInHours.' Hours and '.$differenceInMinutes.' Minutes'}}</p>
-        @elseif($differenceInDays && $differenceInHours)
-            <p class="text-center">Completed In: {{$differenceInDays.' Days and '.$differenceInHours.' Hours'}}</p>
-        @elseif($differenceInDays && $differenceInWeeks)
-            <p class="text-center">Completed In: {{$differenceInWeeks.' Week(s) and '.$differenceInDays.' Days'}}</p>
+        @elseif($differenceInHours < 24 )
+            <p class="text-center">Completed In: {{'Just '.$differenceInHours.' Hours'}}</p>
+        @elseif($differenceInDays < 7)
+            <p class="text-center">Completed In: {{$differenceInDays.' Days'}}</p>
+        @else
+            <p class="text-center">Completed In: {{$differenceInWeeks.' Week(s)'}}</p>
         @endif
     </div>
     <div class="d-flex flex-column mb-2">
