@@ -77,7 +77,7 @@
         </div>
     </form>
 </div>
-<script type="text/javascript">
+<script class="text/javascript">
     function addcomment(id){
         var url = `http://127.0.0.1:8000/executor/addcomment?id=${id}`;
         $('#partial').load(url + " #addform", function(){
@@ -117,6 +117,7 @@
             url: "{{route('markascomplete')}}",
             data: {'_token':csrf, 'id':task_id},
             success: function(){
+
             }
         })
     }

@@ -19,9 +19,10 @@
                     <p><i class="bi bi-calendar-date ml-4 mr-3"></i>Date Created : {{$request->getCreatedAt()}}</p>
                     <p><i class="bi bi-check2-square ml-4 mr-3"></i>Date Completed : {{$request->getDateCompleted()}}</p>
                 </div>
-                <div class="d-flex flex-column align-self-center">
+                <div class="d-flex flex-row align-self-center gap-2">
                     <button id="{{ 'task'.$request->getId() }}" onclick="markasClosed('{{ $request->getId() }}')" class="mb-1 btn btn-info text-white"><i class="bi bi-check-all"></i> Close Request</button>
                     <button class="btn btn-primary" onclick="viewDetails('{{ $request->getId() }}')"><i class="bi bi-eye"></i> View Details</button>
+                    <button id="sendback" class="btn btn-secondary" onclick="sendBack('{{ $request->getId() }}')"><i class="bi bi-backspace-fill"></i> Send Back</button>
                 </div>
             </a>
             <!-- Modal -->
@@ -48,7 +49,7 @@
         var csrf = document.querySelector('meta[name="csrf-token"]').content;
         $.ajax({
             type:'POST',
-            url: "{{route('markasclosed')}}",
+            url: "{{ route('markasclosed') }}",
             data: { '_token':csrf, 'id':id },
             success: function(result){
                 document.querySelector(`#task${result.id}`).parentElement.parentElement.remove();
@@ -62,6 +63,28 @@
             $("#mymodal").modal('show');
             $(".modal-title").text("Task Details");
             return false;
+        });
+    }
+    function sendBack(id){
+        var url = `http://127.0.0.1:8000/requestor/sendback?id=${id}`;
+        $('#partial').load(url + " #addsendbackcomment", function(){
+            $("#mymodal").modal('show');
+            $(".modal-title").text("Add Send Back Reason");
+            return false;
+        });
+    }
+    function saveReason(){
+        var reason = new FormData(document.getElementById("addsendbackcomment"));
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('savesendbackreason') }}",
+            data: reason,
+            processData: false,
+            contentType: false,
+            success: function(result){
+                $("#mymodal").modal('hide');
+                toastr.info("Your request has been sent back");
+            }
         });
     }
 </script>

@@ -25,7 +25,7 @@
             <h3 class="">Closed Tasks</h3>
         </a>
         <a class="card d-flex align-items-center justify-content-center text-decoration-none" style="width:220px;height:200px;">
-            <h2 class="">{{$completionRate}}<i class="bi bi-graph-up-arrow"></i></h2>
+            <h2 class="">{{$completionRate}}<i class="bi bi-graph-up-arrow"></i></h2><small>/(perday)</small>
             <h3 class="">Completion Rate</h3>
         </a>
     </div>

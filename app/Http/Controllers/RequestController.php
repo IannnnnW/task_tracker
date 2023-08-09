@@ -49,7 +49,7 @@ class RequestController extends Controller{
     public function pending(){
         $viewData = [];
         $viewData['title'] = 'Pending & Unassigned';
-        $viewData['pendingTasks'] = Task::whereIn('progress', ['unassigned', 'in progress'])->where('created_by', Auth::id())->get();
+        $viewData['pendingTasks'] = Task::whereIn('progress', ['unassigned', 'in progress', 'sent back'])->where('created_by', Auth::id())->get();
         return view('Requestor.pending')->with('viewData', $viewData);
     }
     public function edit($id){
@@ -106,5 +106,17 @@ class RequestController extends Controller{
         $differenceInMinutes = $createdAt->diffInMinutes($completedAt);
         $differenceInWeeks = $createdAt->diffInWeeks($completedAt);
         return view('Requestor.showdetails', compact('task','differenceInDays','differenceInHours','differenceInMinutes', 'differenceInWeeks'));
+    }
+    public function sendBack(Request $request){
+        $task = Task::findOrFail($request->id);
+        return view('Requestor.sendbackcommentform', compact('task'));
+    }
+
+    public function saveSendBackReason(Request $request){
+        $task = Task::findOrFail(Crypt::decrypt($request->id));
+        $task->setProgress('sent back');
+        $task->setSendBackReason($request->reason);
+        $task->save();
+        return redirect()->route('Requestor.pending');
     }
 }

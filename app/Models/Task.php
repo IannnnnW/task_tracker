@@ -104,6 +104,12 @@ class Task extends Model{
     public function setPriority($priority){
         $this->attributes['priority'] = $priority;
     }
+    public function getSendBackReason(){
+        return $this->attributes['send_back_reason'];
+    }
+    public function setSendBackReason($reason){
+        $this->attributes['send_back_reason'] = $reason;
+    }
     public function getCreatedAt(){
         return $this->attributes['created_at'];
     }

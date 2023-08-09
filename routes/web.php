@@ -47,4 +47,6 @@ Route::middleware('authentication')->group(function(){
     Route::get('/supervisor/closedtasks', 'App\Http\Controllers\SupervisorController@closedTasks')->name('Supervisor.closed');
     Route::get('/executor/dashboard', 'App\Http\Controllers\ExecutorController@dashboard')->name('Executor.dashboard');
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('Admin.index');
+    Route::get('/requestor/sendback', 'App\Http\Controllers\RequestController@sendBack')->name('sendbackcommentform');
+    Route::post('/requestor/savesendbackreason', 'App\Http\Controllers\RequestController@saveSendBackReason')->name('savesendbackreason');
 });

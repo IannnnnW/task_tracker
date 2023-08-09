@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('assigned_to')->nullable();
             $table->unsignedBigInteger('department_assigned_to');
             $table->json('subtasks')->nullable();
-            $table->enum('progress', ['unassigned', 'in progress', 'complete', 'closed'])->default('unassigned');
+            $table->enum('progress', ['unassigned', 'in progress', 'complete', 'closed', 'sent back'])->default('unassigned');
             $table->string('image')->nullable();
             $table->unsignedBigInteger('supervised_by')->nullable();
             $table->timestamp('date_assigned')->nullable();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->timestamp('date_closed')->nullable();
             $table->enum('priority', ['very high', 'high', 'medium','low'])->nullable();
             $table->timestamps();
+            $table->string('send_back_reason')->nullable();
 
             $table->foreign('supervised_by')->references('id')->on('users');
             $table->foreign('department_assigned_to')->references('id')->on('roles');
