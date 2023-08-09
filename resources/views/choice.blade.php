@@ -5,7 +5,7 @@
 <h2 class="text-center">Select Role</h2>
 <div class="d-flex justify-content-center mt-4">
     <div class="container d-flex flex-column align-content-between" style="height:750px;">
-        <a class="card mb-3 p-3 align-self-center d-flex flex-column align-items-center" style="width:300px;text-decoration:none;">
+        <a href="{{ route('Admin.index') }}" class="card mb-3 p-3 align-self-center d-flex flex-column align-items-center" style="width:300px;text-decoration:none;">
             <img src="{{asset('/img/admin.png')}}" class="img-fluid rounded">
             <p class="mt-2 text-center text-black btn">Admin</p>
         </a>

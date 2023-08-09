@@ -46,4 +46,5 @@ Route::middleware('authentication')->group(function(){
     Route::get('/supervisor/completedtasks', 'App\Http\Controllers\SupervisorController@completedTasks')->name('Supervisor.completedtasks');
     Route::get('/supervisor/closedtasks', 'App\Http\Controllers\SupervisorController@closedTasks')->name('Supervisor.closed');
     Route::get('/executor/dashboard', 'App\Http\Controllers\ExecutorController@dashboard')->name('Executor.dashboard');
+    Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('Admin.index');
 });
