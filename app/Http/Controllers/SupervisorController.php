@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\User;
@@ -48,5 +49,22 @@ class SupervisorController extends Controller{
     public function closedTasks(){
         $closedTasks = Task::where('progress', 'closed')->where('supervised_by', Auth::user()->getId())->get();
         return view('Supervisor.closed', compact('closedTasks'));
+    }
+    public function sentBackRequests(){
+        $sentBackRequests = Task::where('progress', 'sent back')->where('department_assigned_to', Auth::user()->getDepartment()->getId())->get();
+        return view('Supervisor.sentbackrequests', compact('sentBackRequests'));
+    }
+    public function getRequest(){
+        $request = Task::findOrFail(request()->id)->first();
+        $departmentMembers = User::where('department_id', Auth::user()->getDepartment()->getId())->get();
+        return view('Supervisor.reassignform', compact('request', 'departmentMembers'));
+    }
+    public function savenewAssignee(){
+        $request = Task::findOrFail(request()->taskId)->first();
+        $request->setAssignedTo(request()->newAssignee);
+        $request->setProgress('in progress');
+        $request->subtasks = null;
+        $request->update();
+        return response()->json($request);
     }
 }

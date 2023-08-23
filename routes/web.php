@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SupervisorController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +52,11 @@ Route::middleware('authentication')->group(function(){
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('Admin.index');
     Route::get('/requestor/sendback', 'App\Http\Controllers\RequestController@sendBack')->name('sendbackcommentform');
     Route::post('/requestor/savesendbackreason', 'App\Http\Controllers\RequestController@saveSendBackReason')->name('savesendbackreason');
+    Route::get('/supervisor/sentback', [SupervisorController::class, 'sentBackRequests'])->name('Supervisor.sentback');
+    Route::get('/supervisor/reassign', [SupervisorController::class, 'getRequest'])->name('Supervisor.reassign');
+    Route::post('/supervisor/savenewassigne', [SupervisorController::class, 'savenewAssignee'])->name('savenewAssignee');
+    Route::get('/admin/deleteuser',[AdminController::class, 'DeleteUser'])->name('deleteuser');
+    Route::post('/admin/removeuser', [AdminController::class, 'RemoveUser'])->name('removeuser');
+    Route::get('/admin/edituser', [AdminController::class, 'ShowEditUser'])->name('showedituser');
+    Route::post('/admin/saveuseredit', [AdminController::class, 'SaveUserEdit'])->name('saveuseredit');
 });
